@@ -32,7 +32,7 @@ VALUES ('Adam', 'Sandler', 'adam_s', 'adam@hollywood.com', 11111, '$2a$10$AVI6e8
 
 INSERT INTO STATIONS (station_name, station_sequence, in_count, out_count, tariff, weekend_tariff)
 VALUES ('A1', 1, 0, 0, 0, 0.75),
-       ('A2', 2, 2, 2, 17, 0.75),
+       ('A2', 2, 0, 0, 17, 0.75),
        ('A3', 3, 0, 0, 31, 0.75),
        ('A4', 4, 0, 0, 43, 0.75),
        ('A5', 5, 0, 0, 54, 0.75),

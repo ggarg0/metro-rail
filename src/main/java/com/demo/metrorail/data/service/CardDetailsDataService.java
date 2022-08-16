@@ -19,7 +19,7 @@ public class CardDetailsDataService {
 
 	/**
 	 * @param cardNumber
-	 * @return BankAccount if account exists, else returns null
+	 * @return Card holder if account exists, else returns null
 	 */
 	public MetroCard getAccountDetailsForCardNumber(String cardNumber) {
 		Optional<MetroCard> cardHolderDetails = this.cardDetailsRepository.getAccountDetailsForCardNumber(cardNumber);
@@ -36,6 +36,10 @@ public class CardDetailsDataService {
 			cardDetails.add(ba);
 		});
 		return cardDetails;
+	}
+
+	public void saveAllCardDetails(List<MetroCard> cardDetails) {
+		this.cardDetailsRepository.saveAll(cardDetails);
 	}
 
 }

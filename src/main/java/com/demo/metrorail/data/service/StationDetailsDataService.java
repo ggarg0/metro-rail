@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.metrorail.constant.MessageConstants;
 import com.demo.metrorail.dto.StationFootfallResponse;
+import com.demo.metrorail.entity.Stations;
 import com.demo.metrorail.exceptions.StationDetailsNotFoundException;
 import com.demo.metrorail.repository.StationDetailsRepository;
 
@@ -34,6 +35,20 @@ public class StationDetailsDataService {
 		}
 
 		return staionsDetails;
+	}
+
+	public List<Stations> getStationDetails(String station_in, String station_out) {
+		List<Stations> staionsDetails = new ArrayList<>();
+
+		staionsDetails = this.stationDetailsRepository.getStationDetails(station_in, station_out);
+		if (staionsDetails.size() != 2) {
+			throw new StationDetailsNotFoundException("Station details not found");
+		}
+		return staionsDetails;
+	}
+
+	public void saveAllStationDetails(List<Stations> stationDetails) {
+		this.stationDetailsRepository.saveAll(stationDetails);
 	}
 
 }

@@ -15,7 +15,7 @@ public class AuthernticationService {
 		return new BCryptPasswordEncoder(10);
 	}
 
-	public Boolean authenticateBankAccount(MetroCard metroCard, String pinPlainText) {
+	public Boolean authenticateCardHolderAccount(MetroCard metroCard, String pinPlainText) {
 		return this.passwordEncoder().matches(pinPlainText, metroCard.getCard_pin());
 	}
 

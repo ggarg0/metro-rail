@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.metrorail.dto.BalanceEnquiry;
 import com.demo.metrorail.dto.BalanceEnquiryResponse;
+import com.demo.metrorail.dto.JourneyDetailsRequest;
+import com.demo.metrorail.dto.JourneyDetailsResponse;
 import com.demo.metrorail.dto.StationFootfallResponse;
 import com.demo.metrorail.entity.MetroCard;
 import com.demo.metrorail.service.business.carddetails.CardDetails;
+import com.demo.metrorail.service.business.journeydetails.JourneyDetails;
 import com.demo.metrorail.service.business.station.StationDetails;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,6 +37,9 @@ public class MetroRailController {
 	@Autowired
 	StationDetails stationDetails;
 	
+	@Autowired
+	JourneyDetails journeyDetails;
+
 	/**
 	 * <p>
 	 * This controller method will authenticate the pin for user, On successful
@@ -53,6 +59,33 @@ public class MetroRailController {
 	@PostMapping("balance")
 	public BalanceEnquiryResponse getCardBalanceForUser(@Valid @RequestBody BalanceEnquiry balanceEnquiry) {
 		return this.cardDetails.getCardBalanceForUser(balanceEnquiry);
+	}
+
+	/**
+	 * <p>
+	 * This controller method will authenticate the pin for user, On successful
+	 * validation, tariff for the journey will be calculated. 
+	 * 1) In case of
+	 * sufficient balance, journey details with the updated balance would be
+	 * returned 
+	 * 2) In case of insufficient balance, insufficient balance message
+	 * would be returned
+	 * </p>
+	 *
+	 * @param balanceEnquiry {@link com.demo.metrorail.dto.JourneyDetailsRequest} A
+	 *                       custom journey details object.
+	 * @return {@link com.demo.metrorail.dto.JourneyDetailsResponse}. Journey
+	 *         details response for user.
+	 */
+
+	@Operation(summary = "Book a ticket and get journey details for user")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Will respond with tariff details for journey", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = JourneyDetailsResponse.class)) }) })
+	@PostMapping("journey-details")
+	public JourneyDetailsResponse getJourneyDetailsForUser(
+			@Valid @RequestBody JourneyDetailsRequest journeyDetailsRequest) {
+		return this.journeyDetails.getJourneyDetailsForUser(journeyDetailsRequest);
 	}
 
 	/**

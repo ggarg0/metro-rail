@@ -24,7 +24,7 @@ public class CardDetailsImpl implements CardDetails {
 	private CardDetailsDataService cardDetailsDataService;
 
 	@Autowired
-	AuthernticationService authernticationService;
+	AuthernticationService authenticationService;
 
 	/**
 	 * {@inheritDoc}
@@ -50,7 +50,7 @@ public class CardDetailsImpl implements CardDetails {
 		}
 
 		// Authenticate
-		if (this.authernticationService.authenticateBankAccount(metroCardDetails, balanceEnquiry.getPin())) {
+		if (this.authenticationService.authenticateCardHolderAccount(metroCardDetails, balanceEnquiry.getPin())) {
 			// Respond Balance.
 			return new BalanceEnquiryResponse(metroCardDetails.getUser_name(), metroCardDetails.getFirst_name(),
 					metroCardDetails.getLast_name(), metroCardDetails.getCard_number(), metroCardDetails.getBalance(),
