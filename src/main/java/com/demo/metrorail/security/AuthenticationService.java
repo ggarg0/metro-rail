@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.demo.metrorail.entity.MetroCard;
 
 @Service
-public class AuthernticationService {
+public class AuthenticationService {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {

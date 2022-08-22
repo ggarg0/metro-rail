@@ -12,19 +12,19 @@ import com.demo.metrorail.dto.BalanceEnquiry;
 import com.demo.metrorail.dto.BalanceEnquiryResponse;
 import com.demo.metrorail.entity.MetroCard;
 import com.demo.metrorail.exceptions.CardNumberNotFoundException;
-import com.demo.metrorail.security.AuthernticationService;
+import com.demo.metrorail.security.AuthenticationService;
 
 import lombok.Data;
 
 @Service
 @Data
-public class CardDetailsImpl implements CardDetails {
+public class CardDetailsServiceImpl implements CardDetailsService {
 
 	@Autowired
 	private CardDetailsDataService cardDetailsDataService;
 
 	@Autowired
-	AuthernticationService authenticationService;
+	AuthenticationService authenticationService;
 
 	/**
 	 * {@inheritDoc}
@@ -35,7 +35,7 @@ public class CardDetailsImpl implements CardDetails {
 	 */
 	public BalanceEnquiryResponse getCardBalanceForUser(BalanceEnquiry balanceEnquiry) {
 		if (Objects.isNull(balanceEnquiry)) {
-			return new BalanceEnquiryResponse(null, null, null, balanceEnquiry.getCardNumber(), 0l,
+			return new BalanceEnquiryResponse(null, null, null, null, 0l,
 					MessageConstants.InvalidBalanceEnquiry);
 		}
 

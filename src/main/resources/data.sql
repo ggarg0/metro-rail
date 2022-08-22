@@ -30,13 +30,13 @@ VALUES ('Adam', 'Sandler', 'adam_s', 'adam@hollywood.com', 11111, '$2a$10$AVI6e8
 	   ('Mark', 'Waugh', 'mark_w', 'mark@cricket.com', 33333, '$2a$10$2qcBY05Bo2W9VrlX7HUm1ONdc0OwTu5qF7382DOFlB3tnMydEpdl2', 1500),
        ('Chris', 'Gayle', 'chris_g', 'chris@cricket.com', 44444, '$2a$10$k2QUCfZf.t7dAHC3OvwdyO01yl5sNHhewaGBwyZRuCx/3LuzTQpPq', 1230);
 
-INSERT INTO STATIONS (station_name, station_sequence, in_count, out_count, tariff, weekend_tariff)
-VALUES ('A1', 1, 0, 0, 0, 0.75),
-       ('A2', 2, 0, 0, 17, 0.75),
-       ('A3', 3, 0, 0, 31, 0.75),
-       ('A4', 4, 0, 0, 43, 0.75),
-       ('A5', 5, 0, 0, 54, 0.75),
-       ('A6', 6, 0, 0, 68, 0.75),
-       ('A7', 7, 0, 0, 76, 0.75),
-       ('A8', 8, 0, 0, 87, 0.75),
-       ('A9', 9, 0, 0, 98, 0.75);
+INSERT INTO STATIONS (station_name, station_sequence, in_count, out_count, tariff)
+VALUES ('A1', 1, 0, 0, 0),
+       ('A2', 2, 0, 0, 17),
+       ('A3', 3, 0, 0, 31),
+       ('A4', 4, 0, 0, 43),
+       ('A5', 5, 0, 0, 54),
+       ('A6', 6, 0, 0, 68),
+       ('A7', 7, 0, 0, 76),
+       ('A8', 8, 0, 0, 87),
+       ('A9', 9, 0, 0, 98);

@@ -1,10 +1,10 @@
-package com.demo.metrorail.service.business.station;
+package com.demo.metrorail.service.business.stationdetails;
 
 import java.util.List;
 
 import com.demo.metrorail.dto.StationFootfallResponse;
 
-public interface StationDetails {
+public interface StationDetailsService {
 
 	/**
 	 * <p>

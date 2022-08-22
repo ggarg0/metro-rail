@@ -17,9 +17,9 @@ import com.demo.metrorail.dto.JourneyDetailsRequest;
 import com.demo.metrorail.dto.JourneyDetailsResponse;
 import com.demo.metrorail.dto.StationFootfallResponse;
 import com.demo.metrorail.entity.MetroCard;
-import com.demo.metrorail.service.business.carddetails.CardDetails;
-import com.demo.metrorail.service.business.journeydetails.JourneyDetails;
-import com.demo.metrorail.service.business.station.StationDetails;
+import com.demo.metrorail.service.business.carddetails.CardDetailsService;
+import com.demo.metrorail.service.business.journeydetails.JourneyDetailsService;
+import com.demo.metrorail.service.business.stationdetails.StationDetailsService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -32,13 +32,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 public class MetroRailController {
 
 	@Autowired
-	CardDetails cardDetails;
+	CardDetailsService cardDetails;
 
 	@Autowired
-	StationDetails stationDetails;
+	StationDetailsService stationDetails;
 	
 	@Autowired
-	JourneyDetails journeyDetails;
+	JourneyDetailsService journeyDetails;
 
 	/**
 	 * <p>

@@ -39,11 +39,7 @@ public class StationDetailsDataService {
 
 	public List<Stations> getStationDetails(String station_in, String station_out) {
 		List<Stations> staionsDetails = new ArrayList<>();
-
 		staionsDetails = this.stationDetailsRepository.getStationDetails(station_in, station_out);
-		if (staionsDetails.size() != 2) {
-			throw new StationDetailsNotFoundException("Station details not found");
-		}
 		return staionsDetails;
 	}
 

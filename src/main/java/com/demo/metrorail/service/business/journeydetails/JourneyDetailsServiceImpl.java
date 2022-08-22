@@ -22,16 +22,16 @@ import com.demo.metrorail.entity.Stations;
 import com.demo.metrorail.exceptions.CardNumberNotFoundException;
 import com.demo.metrorail.exceptions.InsufficientFundsException;
 import com.demo.metrorail.exceptions.StationDetailsNotFoundException;
-import com.demo.metrorail.security.AuthernticationService;
+import com.demo.metrorail.security.AuthenticationService;
 
 import lombok.Data;
 
 @Service
 @Data
-public class JourneyDetailsImpl implements JourneyDetails {
+public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 
 	@Autowired
-	AuthernticationService authenticationService;
+	AuthenticationService authenticationService;
 
 	@Autowired
 	private CardDetailsDataService cardDetailsDataService;
@@ -71,6 +71,10 @@ public class JourneyDetailsImpl implements JourneyDetails {
 			stationDetails = this.stationDetailsDataService.getStationDetails(journeyDetailsRequest.getStationIn(),
 					journeyDetailsRequest.getStationOut());
 
+			if (stationDetails.size() != 2) {
+				throw new StationDetailsNotFoundException("Station details not found");
+			}
+			
 			// Authenticate
 			if (this.authenticationService.authenticateCardHolderAccount(metroCardDetails,
 					journeyDetailsRequest.getPin())) {
@@ -91,7 +95,7 @@ public class JourneyDetailsImpl implements JourneyDetails {
 				// Respond Balance.
 				return new JourneyDetailsResponse(metroCardDetails.getUser_name(), metroCardDetails.getFirst_name(),
 						metroCardDetails.getLast_name(), metroCardDetails.getCard_number(),
-						metroCardDetails.getBalance(), "Total fare from " + journeyDetailsRequest.getStationIn()
+						metroCardDetails.getBalance(), "Success: Total fare from " + journeyDetailsRequest.getStationIn()
 								+ " to " + journeyDetailsRequest.getStationOut() + " is " + fare);
 			} else {
 				logger.error(MessageConstants.InvalidPin);

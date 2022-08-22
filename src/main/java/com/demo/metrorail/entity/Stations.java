@@ -24,6 +24,5 @@ public class Stations {
 	private Integer in_count;
 	private Integer out_count;
 	private Long tariff;
-	private Long weekend_tariff;
 
 }

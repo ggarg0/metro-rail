@@ -1,7 +1,7 @@
 package com.demo.metrorail.constant;
 
 public class MessageConstants {
-	public static final String SingleSpace = " ";
+	public static final String Success = "Success";
 
 	public static final String InsufficientAmountInAccountMessage = "Balance amount in account is insufficient";
 

@@ -3,7 +3,7 @@ package com.demo.metrorail.service.business.journeydetails;
 import com.demo.metrorail.dto.JourneyDetailsRequest;
 import com.demo.metrorail.dto.JourneyDetailsResponse;
 
-public interface JourneyDetails {
+public interface JourneyDetailsService {
 	/**
 	 * <p>
 	 * This method should return the journey details of the card holder as

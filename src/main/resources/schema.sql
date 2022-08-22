@@ -46,7 +46,6 @@ CREATE TABLE STATIONS (
       station_sequence INT,
       in_count INT default 0,
       out_count INT default 0,
-      tariff DOUBLE,
-      weekend_tariff DOUBLE
+      tariff DOUBLE
 );
 ALTER TABLE STATIONS ADD CONSTRAINT station_sequence_uq UNIQUE(station_sequence);

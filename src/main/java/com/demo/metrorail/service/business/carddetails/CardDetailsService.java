@@ -6,7 +6,7 @@ import com.demo.metrorail.dto.BalanceEnquiry;
 import com.demo.metrorail.dto.BalanceEnquiryResponse;
 import com.demo.metrorail.entity.MetroCard;
 
-public interface CardDetails {
+public interface CardDetailsService {
 	/**
 	 * <p>
 	 * This method should return the balance details of the card holder as

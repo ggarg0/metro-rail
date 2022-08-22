@@ -1,4 +1,4 @@
-package com.demo.metrorail.service.business.station;
+package com.demo.metrorail.service.business.stationdetails;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Service
 @Data
-public class StationDetailsImpl implements StationDetails {
+public class StationDetailsServiceImpl implements StationDetailsService {
 
 	@Autowired
 	private StationDetailsDataService stationDetailsDataService;
