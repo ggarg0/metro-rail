@@ -54,7 +54,7 @@ public class CardDetailsServiceTest {
 
 	@Mock
 	private CardDetailsDataService cardDetailsDataService;
-
+	
 	@InjectMocks
 	private CardDetailsServiceImpl cardDetailsServiceImpl;
 
@@ -123,7 +123,7 @@ public class CardDetailsServiceTest {
 
 	@Test
 	public void testMockData() {
-		List<MetroCard> listOfAccounts = this.cardDetailsServiceImpl.getAllCardDetails();
+		List<MetroCard> listOfAccounts = this.cardDetailsDataService.getAllCardDetails();
 		Assertions.assertEquals(4, listOfAccounts.size());
 	}
 

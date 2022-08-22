@@ -35,15 +35,14 @@ public class CardDetailsServiceImpl implements CardDetailsService {
 	 */
 	public BalanceEnquiryResponse getCardBalanceForUser(BalanceEnquiry balanceEnquiry) {
 		if (Objects.isNull(balanceEnquiry)) {
-			return new BalanceEnquiryResponse(null, null, null, null, 0l,
-					MessageConstants.InvalidBalanceEnquiry);
+			return new BalanceEnquiryResponse(null, null, null, null, 0l, MessageConstants.InvalidBalanceEnquiry);
 		}
 
 		// Fetch card details from DB.
 		MetroCard metroCardDetails = null;
 		try {
-			metroCardDetails = this.cardDetailsDataService
-					.getAccountDetailsForCardNumber(balanceEnquiry.getCardNumber());
+			metroCardDetails = getAccountDetailsForCardNumber(balanceEnquiry.getCardNumber());
+
 		} catch (CardNumberNotFoundException exp) {
 			return new BalanceEnquiryResponse(null, null, null, balanceEnquiry.getCardNumber(), 0l,
 					MessageConstants.CardNumberNotFound);
@@ -66,6 +65,16 @@ public class CardDetailsServiceImpl implements CardDetailsService {
 	@Override
 	public List<MetroCard> getAllCardDetails() {
 		return this.cardDetailsDataService.getAllCardDetails();
+	}
+
+	@Override
+	public void saveAllCardDetails(List<MetroCard> cardDetails) {
+		this.cardDetailsDataService.saveAllCardDetails(cardDetails);
+	}
+
+	@Override
+	public MetroCard getAccountDetailsForCardNumber(String cardNumber) {
+		return this.cardDetailsDataService.getAccountDetailsForCardNumber(cardNumber);
 	}
 
 }

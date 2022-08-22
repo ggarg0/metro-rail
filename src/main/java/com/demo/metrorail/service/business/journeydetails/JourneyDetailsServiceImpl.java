@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.metrorail.constant.MessageConstants;
-import com.demo.metrorail.data.service.CardDetailsDataService;
-import com.demo.metrorail.data.service.StationDetailsDataService;
 import com.demo.metrorail.dto.BalanceEnquiry;
 import com.demo.metrorail.dto.JourneyDetailsRequest;
 import com.demo.metrorail.dto.JourneyDetailsResponse;
@@ -23,6 +21,8 @@ import com.demo.metrorail.exceptions.CardNumberNotFoundException;
 import com.demo.metrorail.exceptions.InsufficientFundsException;
 import com.demo.metrorail.exceptions.StationDetailsNotFoundException;
 import com.demo.metrorail.security.AuthenticationService;
+import com.demo.metrorail.service.business.carddetails.CardDetailsService;
+import com.demo.metrorail.service.business.stationdetails.StationDetailsService;
 
 import lombok.Data;
 
@@ -34,12 +34,12 @@ public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 	AuthenticationService authenticationService;
 
 	@Autowired
-	private CardDetailsDataService cardDetailsDataService;
+	private CardDetailsService cardDetailsService;
 
 	@Autowired
-	private StationDetailsDataService stationDetailsDataService;
-	
-	 private final Logger logger = LogManager.getLogger(this.getClass());
+	private StationDetailsService stationDetailsService;
+
+	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	/**
 	 * {@inheritDoc}
@@ -53,8 +53,7 @@ public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 	@Override
 	public synchronized JourneyDetailsResponse getJourneyDetailsForUser(JourneyDetailsRequest journeyDetailsRequest) {
 		if (Objects.isNull(journeyDetailsRequest)) {
-			return new JourneyDetailsResponse(null, null, null, journeyDetailsRequest.getCardNumber(), 0l,
-					MessageConstants.InvalidJourneyEnquiry);
+			return new JourneyDetailsResponse(null, null, null, null, 0l, MessageConstants.InvalidJourneyEnquiry);
 		}
 
 		MetroCard metroCardDetails = null;
@@ -62,19 +61,19 @@ public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 		List<MetroCard> metroDetails = new ArrayList<MetroCard>();
 		List<Stations> stationDetails = new ArrayList<Stations>();
 
-		try {			
+		try {
 			logger.info("Fetching card details from database");
-			metroCardDetails = this.cardDetailsDataService
+			metroCardDetails = this.cardDetailsService
 					.getAccountDetailsForCardNumber(journeyDetailsRequest.getCardNumber());
 
-			logger.info("Fetching station details from database");
-			stationDetails = this.stationDetailsDataService.getStationDetails(journeyDetailsRequest.getStationIn(),
-					journeyDetailsRequest.getStationOut());
-
-			if (stationDetails.size() != 2) {
-				throw new StationDetailsNotFoundException("Station details not found");
+			if (Objects.isNull(metroCardDetails)) {
+				throw new CardNumberNotFoundException(MessageConstants.CardNumberNotFound);
 			}
 			
+			logger.info("Fetching station details from database");
+			stationDetails = this.stationDetailsService.getStationDetails(journeyDetailsRequest.getStationIn(),
+					journeyDetailsRequest.getStationOut());
+
 			// Authenticate
 			if (this.authenticationService.authenticateCardHolderAccount(metroCardDetails,
 					journeyDetailsRequest.getPin())) {
@@ -89,14 +88,15 @@ public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 
 				metroCardDetails.setBalance(remainingBalance);
 				metroDetails.add(metroCardDetails);
-				this.cardDetailsDataService.saveAllCardDetails(metroDetails);
-				this.stationDetailsDataService.saveAllStationDetails(stationDetails);
+				this.cardDetailsService.saveAllCardDetails(metroDetails);
+				this.stationDetailsService.saveAllStationDetails(stationDetails);
 
 				// Respond Balance.
 				return new JourneyDetailsResponse(metroCardDetails.getUser_name(), metroCardDetails.getFirst_name(),
 						metroCardDetails.getLast_name(), metroCardDetails.getCard_number(),
-						metroCardDetails.getBalance(), "Success: Total fare from " + journeyDetailsRequest.getStationIn()
-								+ " to " + journeyDetailsRequest.getStationOut() + " is " + fare);
+						metroCardDetails.getBalance(),
+						"Success: Total fare from " + journeyDetailsRequest.getStationIn() + " to "
+								+ journeyDetailsRequest.getStationOut() + " is " + fare);
 			} else {
 				logger.error(MessageConstants.InvalidPin);
 				return new JourneyDetailsResponse(null, null, null, journeyDetailsRequest.getCardNumber(), 0l,

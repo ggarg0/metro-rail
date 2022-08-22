@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.metrorail.data.service.StationDetailsDataService;
 import com.demo.metrorail.dto.StationFootfallResponse;
+import com.demo.metrorail.entity.Stations;
 
 import lombok.Data;
 
@@ -18,7 +19,17 @@ public class StationDetailsServiceImpl implements StationDetailsService {
 	private StationDetailsDataService stationDetailsDataService;
 
 	@Override
+	public List<Stations> getStationDetails(String station_in, String station_out) {
+		return this.stationDetailsDataService.getStationDetails(station_in, station_out);
+	}
+	
+	@Override
 	public List<StationFootfallResponse> getAllStationsFootfall() {
 		return this.stationDetailsDataService.getAllStationsFootfall();
+	}
+	
+	@Override
+	public void saveAllStationDetails(List<Stations> stationDetails) {
+		this.stationDetailsDataService.saveAllStationDetails(stationDetails);
 	}
 }

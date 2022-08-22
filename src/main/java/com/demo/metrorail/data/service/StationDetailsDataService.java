@@ -28,7 +28,7 @@ public class StationDetailsDataService {
 			});
 
 			if (staionsDetails.isEmpty()) {
-				throw new StationDetailsNotFoundException("Station details not found");
+				throw new StationDetailsNotFoundException(MessageConstants.StationDetailsNotFound);
 			}
 		} catch (StationDetailsNotFoundException exp) {
 			staionsDetails.add(new StationFootfallResponse(null, 0, 0, MessageConstants.StationDetailsNotFound));
@@ -38,9 +38,14 @@ public class StationDetailsDataService {
 	}
 
 	public List<Stations> getStationDetails(String station_in, String station_out) {
-		List<Stations> staionsDetails = new ArrayList<>();
-		staionsDetails = this.stationDetailsRepository.getStationDetails(station_in, station_out);
-		return staionsDetails;
+		List<Stations> stationDetails = new ArrayList<>();
+		stationDetails = this.stationDetailsRepository.getStationDetails(station_in, station_out);
+
+		if (stationDetails.size() != 2) {
+			throw new StationDetailsNotFoundException(MessageConstants.StationDetailsNotFound);
+		}
+
+		return stationDetails;
 	}
 
 	public void saveAllStationDetails(List<Stations> stationDetails) {

@@ -15,8 +15,8 @@ public interface CardDetailsService {
 	 * <br>
 	 * This method should check the card PIN from the balanceEnquiry request and
 	 * authenticate against the user pin <br>
-	 * On successful authentication this method should provide the details of
-	 * card holder <br>
+	 * On successful authentication this method should provide the details of card
+	 * holder <br>
 	 * else should respond with the BalanceEnquiryResponse as card pin not correct.
 	 *
 	 * @param balanceEnquiry {@link BalanceEnquiry} details for getting card
@@ -25,14 +25,32 @@ public interface CardDetailsService {
 	 *         requested {@BalanceEnquiry}
 	 */
 	BalanceEnquiryResponse getCardBalanceForUser(BalanceEnquiry balanceEnquiry);
-	
-	 /**
-     * This method should return the details of all card holder.
-     * <br> This is more for the audit purpose.
-     *
-     * @return
-     */
-    List<MetroCard> getAllCardDetails();
 
-	
+	/**
+	 * This method should return the details of all card holder. <br>
+	 * This is more for the audit purpose.
+	 *
+	 * @param CardNumber {String}
+	 * @return {@link MetroCard} A card details object for the requested CardNumber
+	 */
+	MetroCard getAccountDetailsForCardNumber(String cardNumber);
+
+	/**
+	 * This method should return the details of all card holder. <br>
+	 * This is more for the audit purpose.
+	 *
+	 * @return
+	 */
+	List<MetroCard> getAllCardDetails();
+
+	/**
+	 * <p>
+	 * This method should save the carddetails details.
+	 * </p>
+	 * <br>
+	 * 
+	 * @param {List of @link MetroCard}
+	 *
+	 */
+	void saveAllCardDetails(List<MetroCard> cardDetails);
 }

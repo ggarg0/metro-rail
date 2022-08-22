@@ -2,15 +2,11 @@ package com.demo.metrorail.data.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.metrorail.constant.MessageConstants;
 import com.demo.metrorail.entity.MetroCard;
-import com.demo.metrorail.exceptions.CardNumberNotFoundException;
 import com.demo.metrorail.repository.CardDetailsRepository;
 
 @Service
@@ -24,11 +20,8 @@ public class CardDetailsDataService {
 	 * @return Card holder if account exists, else returns null
 	 */
 	public MetroCard getAccountDetailsForCardNumber(String cardNumber) {
-		Optional<MetroCard> cardHolderDetails = this.cardDetailsRepository.getAccountDetailsForCardNumber(cardNumber);
-		if (cardHolderDetails.isEmpty() || Objects.isNull(cardHolderDetails)) {
-			throw new CardNumberNotFoundException(MessageConstants.CardNumberNotFound);
-		}
-		return cardHolderDetails.get();
+		MetroCard cardHolderDetails = this.cardDetailsRepository.getAccountDetailsForCardNumber(cardNumber);
+		return cardHolderDetails;
 	}
 
 	public List<MetroCard> getAllCardDetails() {
