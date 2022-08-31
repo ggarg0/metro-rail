@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BalanceEnquiry {
+public class BalanceInquiry {
 
 	@Pattern(regexp = "^[0-9]{5}", message = "Card number can only be number and that to 5 digits only")
 	@NotBlank(message = "Card number cannot be blank")
@@ -22,6 +22,6 @@ public class BalanceEnquiry {
 
 	@Override
 	public String toString() {
-		return "BalanceEnquiry{" + " cardNumber='" + cardNumber + ", pin= *****" + '\'' + '}';
+		return "balanceInquiry{" + " cardNumber='" + cardNumber + ", pin= *****" + '\'' + '}';
 	}
 }

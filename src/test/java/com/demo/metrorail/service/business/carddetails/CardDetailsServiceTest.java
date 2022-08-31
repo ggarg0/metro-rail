@@ -43,8 +43,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.demo.metrorail.constant.MessageConstants;
 import com.demo.metrorail.data.service.CardDetailsDataService;
-import com.demo.metrorail.dto.BalanceEnquiry;
-import com.demo.metrorail.dto.BalanceEnquiryResponse;
+import com.demo.metrorail.dto.BalanceInquiry;
+import com.demo.metrorail.dto.BalanceInquiryResponse;
 import com.demo.metrorail.entity.MetroCard;
 import com.demo.metrorail.exceptions.CardNumberNotFoundException;
 import com.demo.metrorail.security.AuthenticationService;
@@ -128,45 +128,45 @@ public class CardDetailsServiceTest {
 	}
 
 	@Test
-	public void testSuccessBalanceEnquiry() {
-		BalanceEnquiry be = new BalanceEnquiry("11111", "1234");
-		BalanceEnquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
+	public void testSuccessBalanceinquiry() {
+		BalanceInquiry be = new BalanceInquiry("11111", "1234");
+		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
 		Assertions.assertEquals(800, ber.getBalance());
 	}
 
 	@Test
-	public void testSuccessBalanceEnquiryUser() {
-		BalanceEnquiry be = new BalanceEnquiry("22222", "4321");
-		BalanceEnquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
+	public void testSuccessBalanceinquiryUser() {
+		BalanceInquiry be = new BalanceInquiry("22222", "4321");
+		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
 		Assertions.assertEquals(500, ber.getBalance());
 	}
 
 	@Test
-	public void testUnSuccessBalanceEnquiryUser() {
-		BalanceEnquiry be = new BalanceEnquiry("22222", "4321");
-		BalanceEnquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
+	public void testUnSuccessBalanceinquiryUser() {
+		BalanceInquiry be = new BalanceInquiry("22222", "4321");
+		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
 		Assertions.assertNotEquals(800, ber.getBalance());
 	}
 	
 	@Test
-	public void testIncorrectPinBalanceEnquiry() {
-		BalanceEnquiry be = new BalanceEnquiry("11111", "1232");
-		BalanceEnquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
+	public void testIncorrectPinBalanceinquiry() {
+		BalanceInquiry be = new BalanceInquiry("11111", "1232");
+		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
 		Assertions.assertTrue(MessageConstants.InvalidPin.equals(ber.getMessage()));
 	}
 
 	@Test
-	public void testInvalidCardHolderEnquiry() {
-		BalanceEnquiry be = new BalanceEnquiry("unknown", "1234");
-		BalanceEnquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
+	public void testInvalidCardHolderinquiry() {
+		BalanceInquiry be = new BalanceInquiry("unknown", "1234");
+		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
 		Assertions.assertTrue(MessageConstants.CardNumberNotFound.equals(ber.getMessage()));
 	}
 
 	@Test
-	public void testNullBalanceEnquiry() {
-		BalanceEnquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(null);
+	public void testNullBalanceinquiry() {
+		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(null);
 		System.out.println(ber);
-		Assertions.assertTrue(MessageConstants.InvalidBalanceEnquiry.equalsIgnoreCase(ber.getMessage()));
+		Assertions.assertTrue(MessageConstants.InvalidBalanceInquiry.equalsIgnoreCase(ber.getMessage()));
 	}
 
 }

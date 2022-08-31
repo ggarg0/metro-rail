@@ -2,29 +2,29 @@ package com.demo.metrorail.service.business.carddetails;
 
 import java.util.List;
 
-import com.demo.metrorail.dto.BalanceEnquiry;
-import com.demo.metrorail.dto.BalanceEnquiryResponse;
+import com.demo.metrorail.dto.BalanceInquiry;
+import com.demo.metrorail.dto.BalanceInquiryResponse;
 import com.demo.metrorail.entity.MetroCard;
 
 public interface CardDetailsService {
 	/**
 	 * <p>
 	 * This method should return the balance details of the card holder as
-	 * BalanceEnquiryResponse.
+	 * BalanceInquiryResponse.
 	 * </p>
 	 * <br>
-	 * This method should check the card PIN from the balanceEnquiry request and
+	 * This method should check the card PIN from the balanceInquiry request and
 	 * authenticate against the user pin <br>
 	 * On successful authentication this method should provide the details of card
 	 * holder <br>
-	 * else should respond with the BalanceEnquiryResponse as card pin not correct.
+	 * else should respond with the balanceInquiryResponse as card pin not correct.
 	 *
-	 * @param balanceEnquiry {@link BalanceEnquiry} details for getting card
+	 * @param balanceInquiry {@link BalanceInquiry} details for getting card
 	 *                       information.
-	 * @return {@link BalanceEnquiryResponse} A balance enquiry response for the
-	 *         requested {@BalanceEnquiry}
+	 * @return {@link BalanceInquiryResponse} A balance inquiry response for the
+	 *         requested {@BalanceInquiry}
 	 */
-	BalanceEnquiryResponse getCardBalanceForUser(BalanceEnquiry balanceEnquiry);
+	BalanceInquiryResponse getCardBalanceForUser(BalanceInquiry balanceInquiry);
 
 	/**
 	 * This method should return the details of all card holder. <br>

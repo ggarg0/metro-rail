@@ -25,7 +25,7 @@ public interface StationDetailsService {
 	 * </p>
 	 * <br>
 	 * 
-	 * @return {@link StationFootfallResponse} A footfall enquiry response for all
+	 * @return {@link StationFootfallResponse} A footfall inquiry response for all
 	 *         stations {@StationFootfallResponse}
 	 */
 

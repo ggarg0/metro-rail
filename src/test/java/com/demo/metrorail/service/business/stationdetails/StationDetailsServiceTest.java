@@ -83,7 +83,7 @@ public class StationDetailsServiceTest {
 	}
 
 	@Test
-	public void testValidStationEnquiry() {
+	public void testValidStationInquiry() {
 		List<Stations> stations = this.stationDetailsServiceImpl.getStationDetails("A1", "A8");
 		Assertions.assertEquals(2, stations.size());
 	}

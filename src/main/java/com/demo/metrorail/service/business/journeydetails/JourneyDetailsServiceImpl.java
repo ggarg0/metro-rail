@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.metrorail.constant.MessageConstants;
-import com.demo.metrorail.dto.BalanceEnquiry;
+import com.demo.metrorail.dto.BalanceInquiry;
 import com.demo.metrorail.dto.JourneyDetailsRequest;
 import com.demo.metrorail.dto.JourneyDetailsResponse;
 import com.demo.metrorail.entity.MetroCard;
@@ -44,7 +44,7 @@ public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @param balanceEnquiry {@link BalanceEnquiry} details for getting account
+	 * @param balanceInquiry {@link BalanceInquiry} details for getting account
 	 *                       information.
 	 * @return
 	 */
@@ -53,7 +53,7 @@ public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 	@Override
 	public synchronized JourneyDetailsResponse getJourneyDetailsForUser(JourneyDetailsRequest journeyDetailsRequest) {
 		if (Objects.isNull(journeyDetailsRequest)) {
-			return new JourneyDetailsResponse(null, null, null, null, 0l, MessageConstants.InvalidJourneyEnquiry);
+			return new JourneyDetailsResponse(null, null, null, null, 0l, MessageConstants.InvalidJourneyInquiry);
 		}
 
 		MetroCard metroCardDetails = null;

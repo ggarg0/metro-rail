@@ -125,20 +125,20 @@ public class JourneyDetailsServiceTest {
 	}
 
 	@Test
-	public void testNullJourneyEnquiry() {
+	public void testNullJourneyInquiry() {
 		JourneyDetailsResponse resp = this.journeyDetailsServiceImpl.getJourneyDetailsForUser(null);
-		Assertions.assertTrue(MessageConstants.InvalidJourneyEnquiry.equalsIgnoreCase(resp.getMessage()));
+		Assertions.assertTrue(MessageConstants.InvalidJourneyInquiry.equalsIgnoreCase(resp.getMessage()));
 	}
 
 	@Test
-	public void testInvalidCardHolderEnquiry() {
+	public void testInvalidCardHolderInquiry() {
 		JourneyDetailsRequest req = new JourneyDetailsRequest("unknown", "1234", "A1", "A8", "");
 		JourneyDetailsResponse resp = this.journeyDetailsServiceImpl.getJourneyDetailsForUser(req);
 		Assertions.assertTrue(MessageConstants.CardNumberNotFound.equals(resp.getMessage()));
 	}
 
 	@Test
-	public void testIncorrectPinBalanceEnquiry() {
+	public void testIncorrectPinBalanceInquiry() {
 		JourneyDetailsRequest req = new JourneyDetailsRequest("11111", "1232", "A1", "A8", "");
 		JourneyDetailsResponse resp = this.journeyDetailsServiceImpl.getJourneyDetailsForUser(req);
 		Assertions.assertTrue(MessageConstants.InvalidPin.equals(resp.getMessage()));
@@ -152,7 +152,7 @@ public class JourneyDetailsServiceTest {
 	}
 
 	@Test
-	public void testInvalidStationEnquiry() {
+	public void testInvalidStationInquiry() {
 		JourneyDetailsRequest req = new JourneyDetailsRequest("11111", "1234", "B1", "A8", "");
 		JourneyDetailsResponse resp = this.journeyDetailsServiceImpl.getJourneyDetailsForUser(req);
 		Assertions.assertTrue(MessageConstants.StationDetailsNotFound.equals(resp.getMessage()));

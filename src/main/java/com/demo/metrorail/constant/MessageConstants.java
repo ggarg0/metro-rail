@@ -9,9 +9,9 @@ public class MessageConstants {
 
 	public static final String InvalidPin = "PIN in invalid";
 
-	public static final String InvalidBalanceEnquiry = "Please enter a non Empty balance enquiry.";
+	public static final String InvalidBalanceInquiry = "Please enter a non Empty balance inquiry.";
 	
-	public static final String InvalidJourneyEnquiry = "Please enter a valid journey enquiry.";
+	public static final String InvalidJourneyInquiry = "Please enter a valid journey inquiry.";
 
 	public static final String CardNumberNotFound = "Card Number not found.";
 	

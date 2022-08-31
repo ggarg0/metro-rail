@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.demo.metrorail.constant.MessageConstants;
 import com.demo.metrorail.data.service.CardDetailsDataService;
-import com.demo.metrorail.dto.BalanceEnquiry;
-import com.demo.metrorail.dto.BalanceEnquiryResponse;
+import com.demo.metrorail.dto.BalanceInquiry;
+import com.demo.metrorail.dto.BalanceInquiryResponse;
 import com.demo.metrorail.entity.MetroCard;
 import com.demo.metrorail.exceptions.CardNumberNotFoundException;
 import com.demo.metrorail.security.AuthenticationService;
@@ -29,34 +29,34 @@ public class CardDetailsServiceImpl implements CardDetailsService {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @param balanceEnquiry {@link BalanceEnquiry} details for getting account
+	 * @param balanceInquiry {@link BalanceInquiry} details for getting account
 	 *                       information.
 	 * @return
 	 */
-	public BalanceEnquiryResponse getCardBalanceForUser(BalanceEnquiry balanceEnquiry) {
-		if (Objects.isNull(balanceEnquiry)) {
-			return new BalanceEnquiryResponse(null, null, null, null, 0l, MessageConstants.InvalidBalanceEnquiry);
+	public BalanceInquiryResponse getCardBalanceForUser(BalanceInquiry balanceInquiry) {
+		if (Objects.isNull(balanceInquiry)) {
+			return new BalanceInquiryResponse(null, null, null, null, 0l, MessageConstants.InvalidBalanceInquiry);
 		}
 
 		// Fetch card details from DB.
 		MetroCard metroCardDetails = null;
 		try {
-			metroCardDetails = getAccountDetailsForCardNumber(balanceEnquiry.getCardNumber());
+			metroCardDetails = getAccountDetailsForCardNumber(balanceInquiry.getCardNumber());
 
 		} catch (CardNumberNotFoundException exp) {
-			return new BalanceEnquiryResponse(null, null, null, balanceEnquiry.getCardNumber(), 0l,
+			return new BalanceInquiryResponse(null, null, null, balanceInquiry.getCardNumber(), 0l,
 					MessageConstants.CardNumberNotFound);
 		}
 
 		// Authenticate
-		if (this.authenticationService.authenticateCardHolderAccount(metroCardDetails, balanceEnquiry.getPin())) {
+		if (this.authenticationService.authenticateCardHolderAccount(metroCardDetails, balanceInquiry.getPin())) {
 			// Respond Balance.
-			return new BalanceEnquiryResponse(metroCardDetails.getUser_name(), metroCardDetails.getFirst_name(),
+			return new BalanceInquiryResponse(metroCardDetails.getUser_name(), metroCardDetails.getFirst_name(),
 					metroCardDetails.getLast_name(), metroCardDetails.getCard_number(), metroCardDetails.getBalance(),
 					"");
 
 		} else {
-			return new BalanceEnquiryResponse(null, null, null, balanceEnquiry.getCardNumber(), 0l,
+			return new BalanceInquiryResponse(null, null, null, balanceInquiry.getCardNumber(), 0l,
 					MessageConstants.InvalidPin);
 		}
 
