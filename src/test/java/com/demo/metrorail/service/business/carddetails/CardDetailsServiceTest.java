@@ -120,18 +120,18 @@ public class CardDetailsServiceTest {
 
 		this.cardDetailsServiceImpl.setAuthenticationService(this.authenticationService);
 	}
-
-	@Test
-	public void testMockData() {
-		List<MetroCard> listOfAccounts = this.cardDetailsDataService.getAllCardDetails();
-		Assertions.assertEquals(4, listOfAccounts.size());
-	}
-
+	
 	@Test
 	public void testSuccessBalanceinquiry() {
 		BalanceInquiry be = new BalanceInquiry("11111", "1234");
 		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(be);
 		Assertions.assertEquals(800, ber.getBalance());
+	}
+	
+	@Test
+	public void testMockData() {
+		List<MetroCard> listOfAccounts = this.cardDetailsDataService.getAllCardDetails();
+		Assertions.assertEquals(4, listOfAccounts.size());
 	}
 
 	@Test
@@ -165,7 +165,6 @@ public class CardDetailsServiceTest {
 	@Test
 	public void testNullBalanceinquiry() {
 		BalanceInquiryResponse ber = this.cardDetailsServiceImpl.getCardBalanceForUser(null);
-		System.out.println(ber);
 		Assertions.assertTrue(MessageConstants.InvalidBalanceInquiry.equalsIgnoreCase(ber.getMessage()));
 	}
 

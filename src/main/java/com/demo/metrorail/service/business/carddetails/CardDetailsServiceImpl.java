@@ -14,10 +14,10 @@ import com.demo.metrorail.entity.MetroCard;
 import com.demo.metrorail.exceptions.CardNumberNotFoundException;
 import com.demo.metrorail.security.AuthenticationService;
 
-import lombok.Data;
+import lombok.Setter;
 
 @Service
-@Data
+@Setter
 public class CardDetailsServiceImpl implements CardDetailsService {
 
 	@Autowired

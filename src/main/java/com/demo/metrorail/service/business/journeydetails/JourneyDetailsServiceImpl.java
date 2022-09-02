@@ -24,10 +24,10 @@ import com.demo.metrorail.security.AuthenticationService;
 import com.demo.metrorail.service.business.carddetails.CardDetailsService;
 import com.demo.metrorail.service.business.stationdetails.StationDetailsService;
 
-import lombok.Data;
+import lombok.Setter;
 
 @Service
-@Data
+@Setter
 public class JourneyDetailsServiceImpl implements JourneyDetailsService {
 
 	@Autowired
