@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-slim as build
 
 #Information around who maintains the image
-MAINTAINER ggarg.bhilai@gmail.com
+MAINTAINER gauravgarg0
 
 # Add the application's jar to the container
 COPY target/metro-rail-0.0.1-SNAPSHOT.jar metro-rail-0.0.1-SNAPSHOT.jar

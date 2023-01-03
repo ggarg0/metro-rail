@@ -92,7 +92,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>metro-rail-image</name>
+						<name>gauravgarg0/metro-rail-image:latest</name>
 					</image>
 					<excludes>
 						<exclude>
