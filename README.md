@@ -1,10 +1,10 @@
 <h2>Metro Rail App</h2>
 This application simulates the operations for a Metro rail booking. Once successfully up and running it provides the APIs for <br><br>
 
-1. Get the card balance for user /metro/api/balance
-2. Book a ticket and get journey details for user /metro/api/journey-details
-3. Get all the card holder details /metro/api/cardholder-inventory
-4. Get all stations footfall count /metro/api/station-footfall
+1. Get the card balance for user <b>/metro/api/balance</b>
+2. Book a ticket and get journey details for user <b>/metro/api/journey-details</b>
+3. Get all the card holder details <b>/metro/api/cardholder-inventory</b>
+4. Get all stations footfall count <b>/metro/api/station-footfall</b>
 
 <h2>Description</h2>
 This project uses following features to achieve the desired functionality.
