@@ -69,13 +69,13 @@ This is swagger API docs.</LI><br>
   <b>Get all the card holder details</b>
 
  curl -X 'GET'<br>
-'http://localhost:8080/metro/api/cardholder-inventory'<br>
+'http://localhost:8888/metro/api/cardholder-inventory'<br>
 -H 'accept: application/json'<br>
 
   <b>Get the card balance for user</b>
 
  curl -X 'POST'<br>
-'http://localhost:8080/metro/api/balance'<br>
+'http://localhost:8888/metro/api/balance'<br>
 -H 'accept: application/json'<br>
 -H 'Content-Type: application/json'<br>
 -d '{ "cardNumber": "11111", "pin": "1234" }'<br>
@@ -83,7 +83,7 @@ This is swagger API docs.</LI><br>
   <b>Get all stations footfall count</b>
 
  curl -X 'GET'<br>
-'http://localhost:8080//metro/api/station-footfall'<br>
+'http://localhost:8888//metro/api/station-footfall'<br>
 -H 'accept: application/json'<br>
 </LI>
 </OL>
