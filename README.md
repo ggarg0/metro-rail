@@ -49,7 +49,7 @@ example:<br>
 <b>logging.file.path= /Users/Work/metro-rail/logs</b><br>
 this should be a valid path.</LI><br>
 
-<LI>to execute the project, provide the following command.
+<LI>to execute the project, provide the following command.<br>
 <b>$ java -jar ~/metro-rail/target/metro-rail-0.0.1-SNAPSHOT.jar --spring.config.location=file:///Users/...../application.properties</b></LI><br>
 
 <LI>Once the application is up and running, open chrome and put below url in the address bar.<br>
