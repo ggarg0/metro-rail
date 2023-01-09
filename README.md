@@ -1,5 +1,5 @@
 Metro Rail App
-This application simulates the opertaions for an Metro rail bookings. Once successfully up and running it provides the APIs for
+This application simulates the operations for a Metro rail booking. Once successfully up and running it provides the APIs for
 
 1. Get the card balance for user /metro/api/balance
 2. Book a ticket and get journey details for user /metro/api/journey-details
@@ -32,13 +32,13 @@ To run this repo on local
 1. clone this repo
 $ git clone https://github.com/ggarg0/metro-rail
 
-2. Once cloned, Go inside the metro-rail directory and execute
+2. Once cloned, go inside the metro-rail directory and execute
 $ mvn clean install
 This will build the project
 
-3. Once project is build, Copy the property file
+3. Once project is built, Copy the property file
 [https://github.com/ggarg0/metro-rail/blob/main/src/main/resources/application.properties] in a
-temp folder and modify the below property to put the logs at yours system desired folder
+temp folder and modify the below property to put the logs at your system desired folder
 logging.file.path= path_to_generate_log_file
 example:
 logging.file.path= /Users/Work/metro-rail/logs
@@ -59,7 +59,7 @@ This is swagger API docs.
 'http://localhost:8888/metro/api/journey-details'
 -H 'accept: application/json'
 -H 'Content-Type: application/json'
--d '{ "cardNumber": "11111", "pin": "1234", "stationIn": "A1", "stationOut": "A6", "message": ""true"" }'
+-d '{ "cardNumber": "11111", "pin": "1234", "stationIn": "A1", "stationOut": "A6", "message": "" }'
 
    Get all the card holder details
 
@@ -81,8 +81,10 @@ This is swagger API docs.
 'http://localhost:8080//metro/api/station-footfall'
 -H 'accept: application/json'
 
+
+
 Code Coverage
-This project uses Junit5, mockito and Jacoco to provide the unit testing. Unit tests are extensively done for service module only as of now. To view the code coverage use the following commands
+This project uses Junit5, mockito and Jacoco to provide the unit testing. Unit tests are extensively done for service module only as of now. To view the code coverage, use the following commands
 
 $ mvn clean test
 
@@ -92,15 +94,15 @@ $ mvn clean install site --offline
 
 Code coverage reports can be found at.
 
-~/metro-rail/target/site/jacoco/index.html 
-~/metro-rail/target/site/jacoco/com.demo.metrorail.service.business.carddetails/CardDetailsServiceImpl.html 
-~/metro-rail/target/site/jacoco/com.demo.metrorail.service.business.journeydetails/JourneyDetailsServiceImpl.html
+* ~/metro-rail/target/site/jacoco/index.html 
+* ~/metro-rail/target/site/jacoco/com.demo.metrorail.service.business.carddetails/CardDetailsServiceImpl.html 
+* ~/metro-rail/target/site/jacoco/com.demo.metrorail.service.business.journeydetails/JourneyDetailsServiceImpl.html
 
 Authors
 Contributor names and contact info Gaurav Garg [ggarg.bhilai@gmail.com]
 
 Version History
-1.0
-Initial Release
+* 1.0 - Initial Release
+
 License
 This project is licensed under the MIT License - see the LICENSE.md file for details
