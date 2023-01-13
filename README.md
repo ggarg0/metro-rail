@@ -83,7 +83,7 @@ This is swagger API docs.</LI><br>
   <b>Get all stations footfall count</b>
 
  curl -X 'GET'<br>
-'http://localhost:8888//metro/api/station-footfall'<br>
+'http://localhost:8888/metro/api/station-footfall'<br>
 -H 'accept: application/json'<br>
 </LI>
 </OL>
