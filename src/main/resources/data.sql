@@ -28,7 +28,8 @@ INSERT INTO METRO_CARD (first_name, last_name, user_name, email, card_number, ca
 VALUES ('Adam', 'Sandler', 'adam_s', 'adam@hollywood.com', 11111, '$2a$10$AVI6e8rkyn.9Y93Yrbu9/.YM8plIBGZ33PUQy57U1fXw34uXT9mNC', 800),
 	   ('Brad', 'Pitt', 'brad_p', 'brad@hollywood.com', 22222, '$2a$10$BkDnsFV/DA1.fIZ0l6BkEOcWxYMc3313nN2uD0YYNLKkwx6cgY/y.', 500),
 	   ('Mark', 'Waugh', 'mark_w', 'mark@cricket.com', 33333, '$2a$10$2qcBY05Bo2W9VrlX7HUm1ONdc0OwTu5qF7382DOFlB3tnMydEpdl2', 1500),
-       ('Chris', 'Gayle', 'chris_g', 'chris@cricket.com', 44444, '$2a$10$k2QUCfZf.t7dAHC3OvwdyO01yl5sNHhewaGBwyZRuCx/3LuzTQpPq', 1230);
+       ('Chris', 'Gayle', 'chris_g', 'chris@cricket.com', 44444, '$2a$10$k2QUCfZf.t7dAHC3OvwdyO01yl5sNHhewaGBwyZRuCx/3LuzTQpPq', 1230),
+       ('Steve', 'Waugh', 'steve_w', 'steve@cricket.com', 55555, '$2a$10$k2QUCfZf.t7dAHC3OvwdyO01yl5sNHhewaGBwyZRuCx/3LuzTQpPq', 1100);
 
 INSERT INTO STATIONS (station_name, station_sequence, in_count, out_count, tariff)
 VALUES ('A1', 1, 0, 0, 0),
