@@ -26,28 +26,29 @@
 
 DROP TABLE IF EXISTS METRO_CARD;
 CREATE TABLE METRO_CARD (
-                            /*  id INT IDENTITY(101, 1) PRIMARY KEY,*/
-							  id INT AUTO_INCREMENT PRIMARY KEY,
-                              first_name VARCHAR(250) NOT NULL,
-                              last_name VARCHAR(250) NOT NULL,
-                              user_name VARCHAR(250) NOT NULL,
-                              email VARCHAR(250) DEFAULT NULL,
-                              card_number BIGINT,
-                              card_pin VARCHAR(500),
-                              balance FLOAT
+              /* id INT IDENTITY(101, 1) PRIMARY KEY,*/
+			  id INT AUTO_INCREMENT PRIMARY KEY,
+              first_name VARCHAR(250) NOT NULL,
+              last_name VARCHAR(250) NOT NULL,
+              user_name VARCHAR(250) NOT NULL,
+              email VARCHAR(250) DEFAULT NULL,
+              card_number BIGINT,
+              card_pin VARCHAR(500),
+              balance FLOAT
 );
+
 ALTER TABLE METRO_CARD ADD CONSTRAINT email_uq UNIQUE(email);
 ALTER TABLE METRO_CARD ADD CONSTRAINT card_number_uq UNIQUE(card_number);
 ALTER TABLE METRO_CARD ADD CONSTRAINT user_name_uq UNIQUE(user_name);
 
 DROP TABLE IF EXISTS STATIONS;
 CREATE TABLE STATIONS (
-       /*  id INT IDENTITY(101, 1) PRIMARY KEY,*/
-	  id INT AUTO_INCREMENT PRIMARY KEY,
-      station_name VARCHAR(250) NOT NULL,
-      station_sequence INT,
-      in_count INT default 0,
-      out_count INT default 0,
-      tariff FLOAT
+            /*  id INT IDENTITY(101, 1) PRIMARY KEY,*/
+	        id INT AUTO_INCREMENT PRIMARY KEY,
+            station_name VARCHAR(250) NOT NULL,
+            station_sequence INT,
+            in_count INT default 0,
+            out_count INT default 0,
+            tariff FLOAT
 );
 ALTER TABLE STATIONS ADD CONSTRAINT station_sequence_uq UNIQUE(station_sequence);
