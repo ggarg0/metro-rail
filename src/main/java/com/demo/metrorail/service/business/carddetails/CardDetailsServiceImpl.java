@@ -42,7 +42,6 @@ public class CardDetailsServiceImpl implements CardDetailsService {
 		MetroCard metroCardDetails = null;
 		try {
 			metroCardDetails = getAccountDetailsForCardNumber(balanceInquiry.getCardNumber());
-
 		} catch (CardNumberNotFoundException exp) {
 			return new BalanceInquiryResponse(null, null, null, balanceInquiry.getCardNumber(), 0l,
 					MessageConstants.CardNumberNotFound);
@@ -54,12 +53,10 @@ public class CardDetailsServiceImpl implements CardDetailsService {
 			return new BalanceInquiryResponse(metroCardDetails.getUser_name(), metroCardDetails.getFirst_name(),
 					metroCardDetails.getLast_name(), metroCardDetails.getCard_number(), metroCardDetails.getBalance(),
 					"");
-
 		} else {
 			return new BalanceInquiryResponse(null, null, null, balanceInquiry.getCardNumber(), 0l,
 					MessageConstants.InvalidPin);
 		}
-
 	}
 
 	@Override
@@ -76,5 +73,4 @@ public class CardDetailsServiceImpl implements CardDetailsService {
 	public MetroCard getAccountDetailsForCardNumber(String cardNumber) {
 		return this.cardDetailsDataService.getAccountDetailsForCardNumber(cardNumber);
 	}
-
 }
