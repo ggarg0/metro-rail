@@ -7,10 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.demo.metrorail.entity.MetroCard;
 
+import java.util.Optional;
+
 @Repository
 public interface CardDetailsRepository extends CrudRepository<MetroCard, Integer> {
 
 	@Query("SELECT ba FROM MetroCard ba WHERE ba.card_number = :cardNumber")
-	MetroCard getAccountDetailsForCardNumber(@Param("cardNumber") String cardNumber);
+	Optional<MetroCard> getAccountDetailsForCardNumber(@Param("cardNumber") String cardNumber);
 
 }

@@ -1,8 +1,10 @@
 package com.demo.metrorail.exception.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.demo.metrorail.constant.MessageConstants;
+import com.demo.metrorail.exception.formatter.APIError;
+import com.demo.metrorail.exceptions.CardNumberNotFoundException;
+import com.demo.metrorail.exceptions.InsufficientFundsException;
+import com.demo.metrorail.exceptions.StationDetailsNotFoundException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -14,10 +16,13 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.demo.metrorail.exception.formatter.APIError;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
@@ -59,6 +64,30 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 			errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
 		}
 		return buildResponseEntity(new APIError(HttpStatus.BAD_REQUEST, errors.toString(), ex));
+	}
+
+	@ExceptionHandler(CardNumberNotFoundException.class)
+	public ResponseEntity<Object> handleCardNumberNotFoundException(CardNumberNotFoundException ex, HttpServletResponse response) {
+		System.out.println("handleCardNumberNotFoundException called");
+		return buildResponseEntity(new APIError(HttpStatus.INTERNAL_SERVER_ERROR, MessageConstants.CardNumberNotFound, ex));
+	}
+
+	@ExceptionHandler(StationDetailsNotFoundException.class)
+	public ResponseEntity<Object> hanldeStationDetailsNotFoundException(StationDetailsNotFoundException ex, HttpServletResponse response) {
+		System.out.println("hanldeStationDetailsNotFoundException called");
+		return buildResponseEntity(new APIError(HttpStatus.INTERNAL_SERVER_ERROR, MessageConstants.StationDetailsNotFound, ex));
+	}
+
+	@ExceptionHandler(InsufficientFundsException.class)
+	public ResponseEntity<Object> handleInsufficientFundsException(InsufficientFundsException ex, HttpServletResponse response)  {
+		System.out.println("handleInsufficientFundsException called");
+		return buildResponseEntity(new APIError(HttpStatus.INTERNAL_SERVER_ERROR, MessageConstants.InsufficientAmountInAccountMessage, ex));
+	}
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<Object> handleException(Exception ex, HttpServletResponse response)  {
+		System.out.println("handleException called");
+		return buildResponseEntity(new APIError(HttpStatus.INTERNAL_SERVER_ERROR, MessageConstants.ContactAdmin, ex));
 	}
 
 	private ResponseEntity<Object> buildResponseEntity(APIError apiError) {

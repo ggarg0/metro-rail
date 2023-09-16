@@ -16,4 +16,7 @@ public class MessageConstants {
 	public static final String CardNumberNotFound = "Card Number not found.";
 	
 	public static final String StationDetailsNotFound = "Station details not found";
+	
+	public static final String ContactAdmin = "Please contact administrator";
+	
 }
